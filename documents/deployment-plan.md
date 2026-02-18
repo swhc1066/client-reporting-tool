@@ -59,6 +59,8 @@ After the first deploy:
 - **Production URL**: e.g. `https://client-reporting-tool-xxx.vercel.app` (or your custom domain later).
 - **Preview URL**: every branch/PR gets a URL like `https://client-reporting-tool-<branch>-xxx.vercel.app`.
 
+Vercel serves all deployments over HTTPS. The app middleware redirects any HTTP request to HTTPS in production so traffic is always encrypted.
+
 You’ll use these when configuring Supabase redirect URLs and env vars.
 
 ---

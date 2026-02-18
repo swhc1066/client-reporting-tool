@@ -7,6 +7,17 @@ const key =
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
 export async function updateSession(request: NextRequest) {
+  if (process.env.NODE_ENV === "production") {
+    const proto =
+      request.headers.get("x-forwarded-proto") ??
+      request.nextUrl.protocol.replace(":", "");
+    if (proto === "http") {
+      const httpsUrl = new URL(request.url);
+      httpsUrl.protocol = "https:";
+      return NextResponse.redirect(httpsUrl);
+    }
+  }
+
   if (!url || !key) {
     return NextResponse.next();
   }
@@ -39,14 +50,12 @@ export async function updateSession(request: NextRequest) {
     return response;
   }
 
-  // Auth not wired yet: allow access to dashboard without signing in.
-  // When you wire up auth, uncomment the block below to protect routes.
-  // if (!user && isProtected && !isAuthCallback) {
-  //   const signInUrl = new URL("/sign-in", request.url);
-  //   signInUrl.searchParams.set("next", pathname === "/" ? "/dashboard" : pathname);
-  //   response = NextResponse.redirect(signInUrl);
-  //   return response;
-  // }
+  if (!user && isProtected && !isAuthCallback) {
+    const signInUrl = new URL("/sign-in", request.url);
+    signInUrl.searchParams.set("next", pathname === "/" ? "/dashboard" : pathname);
+    response = NextResponse.redirect(signInUrl);
+    return response;
+  }
 
   return response;
 }

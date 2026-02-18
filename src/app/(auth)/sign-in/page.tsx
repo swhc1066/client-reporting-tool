@@ -21,6 +21,7 @@ function SignInForm() {
   const searchParams = useSearchParams();
   const next = searchParams.get("next") ?? "/dashboard";
   const callbackError = searchParams.get("error") === "callback";
+  const passwordUpdated = searchParams.get("message") === "password-updated";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,6 +58,11 @@ function SignInForm() {
       </CardHeader>
       <form onSubmit={handleSubmit}>
         <CardContent className="space-y-4">
+          {passwordUpdated && (
+            <p className="text-sm text-green-600 dark:text-green-400" role="status">
+              Your password was updated. Sign in with your new password.
+            </p>
+          )}
           {error && (
             <p className="text-sm text-destructive" role="alert">
               {error}
@@ -76,7 +82,15 @@ function SignInForm() {
             />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="sign-in-password">Password</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="sign-in-password">Password</Label>
+              <Link
+                href="/forgot-password"
+                className="text-xs text-muted-foreground underline hover:text-foreground"
+              >
+                Forgot password?
+              </Link>
+            </div>
             <Input
               id="sign-in-password"
               type="password"

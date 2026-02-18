@@ -19,7 +19,7 @@ In **Authentication > URL Configuration**:
   - `http://localhost:3000/auth/callback`
   - `https://yourdomain.com/auth/callback` (when you deploy)
 
-Email confirmation links will send users to one of these, then the app redirects to `/dashboard` (or `next` param).
+Email confirmation and password reset links use the same callback URL; the app then redirects to `/dashboard`, `/update-password`, or the `next` param.
 
 ## 3. Email confirmation
 

@@ -6,16 +6,15 @@ import { Header } from "./header";
 
 interface AppShellProps {
   children: React.ReactNode;
-  title?: string;
 }
 
-export function AppShell({ children, title }: AppShellProps) {
+export function AppShell({ children }: AppShellProps) {
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <Header title={title} />
-        <div className="flex-1 p-4">{children}</div>
+        <Header />
+        <div className="mx-auto flex-1 w-full max-w-[1184px] p-4 mt-10 mb-10">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

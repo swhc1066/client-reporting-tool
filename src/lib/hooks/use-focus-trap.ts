@@ -30,7 +30,9 @@ export function useFocusTrap(
 
       function handleKeyDown(e: KeyboardEvent) {
         if (e.key !== "Tab") return;
-        const list = getFocusables(container);
+        const current = containerRef.current;
+        if (!current) return;
+        const list = getFocusables(current);
         if (list.length === 0) return;
         const firstEl = list[0];
         const lastEl = list[list.length - 1];

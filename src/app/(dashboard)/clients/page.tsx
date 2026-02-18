@@ -35,7 +35,7 @@ function ClientListSkeleton() {
 
 function ClientCard({ client }: { client: Client }) {
   return (
-    <Link href={`/clients/${client.id}/present`}>
+    <Link href={`/clients/${client.id}`}>
       <Card className="transition-colors hover:bg-accent/50 focus-within:ring-2 focus-within:ring-ring">
         <CardHeader>
           <CardTitle className="text-base">{client.name}</CardTitle>
@@ -60,14 +60,9 @@ export default function ClientsPage() {
   if (loading) {
     return (
       <div className="space-y-6">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Clients
-          </h1>
-          <p className="text-muted-foreground">
-            Select a client to view their presentation.
-          </p>
-        </div>
+        <p className="text-muted-foreground">
+          Select a client to view their details.
+        </p>
         <ClientListSkeleton />
       </div>
     );
@@ -76,11 +71,6 @@ export default function ClientsPage() {
   if (error) {
     return (
       <div className="space-y-6" role="alert" aria-live="assertive">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
-            Clients
-          </h1>
-        </div>
         <Card className="border-destructive/50 bg-destructive/5">
           <CardHeader>
             <CardTitle className="text-destructive">
@@ -95,14 +85,9 @@ export default function ClientsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">
-          Clients
-        </h1>
-        <p className="text-muted-foreground">
-          Select a client to view their presentation.
-        </p>
-      </div>
+      <p className="text-muted-foreground">
+        Select a client to view their details.
+      </p>
 
       {clients && clients.length > 0 && (
         <div className="max-w-sm">

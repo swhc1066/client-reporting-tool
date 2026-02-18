@@ -5,4 +5,5 @@ export {
   getClients,
   getClientById,
   getClientPresentationData,
+  getClientDashboardData,
 } from "./mock";

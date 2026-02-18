@@ -44,3 +44,43 @@ export interface ClientPresentationData {
   performance?: ClientPerformance;
   summary?: ClientSummary;
 }
+
+export interface ClientDashboardMetrics {
+  totalAssets: number;
+  assetsChangePercent?: number;
+  ytdReturn?: number;
+  benchmarkYtdReturn?: string;
+  totalGainLoss?: number;
+  gainLossLabel?: string;
+  riskScore?: number;
+  riskLabel?: string;
+}
+
+export interface ReturnsByPeriodItem {
+  period: string;
+  portfolio: number;
+  benchmark: number;
+}
+
+export interface RiskMetricItem {
+  name: string;
+  value: number | string;
+  displayValue: string;
+  barPercent?: number;
+}
+
+export interface HoldingItem {
+  security: string;
+  ticker: string;
+  value: number;
+  allocation: number;
+  qtd: number;
+  ytd: number;
+}
+
+export interface ClientDashboardData {
+  metrics?: ClientDashboardMetrics;
+  returnsByPeriod?: ReturnsByPeriodItem[];
+  riskMetrics?: RiskMetricItem[];
+  holdings?: HoldingItem[];
+}

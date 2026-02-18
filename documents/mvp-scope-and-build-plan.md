@@ -57,6 +57,8 @@ Build order is chosen to: (1) define contracts first so mock and UI stay aligned
 - Put app code under `src/` (per PRD scaffolding).
 - Add `.env.local.example` even if empty so env pattern is clear for later Supabase/CRM.
 
+**shadcn/ui, design tokens, and global styles (sub-step):** The reporting tool does not need to match another product's UI (e.g. fa-tool-implementation-plan). Use **out-of-the-box shadcn** for MVP. Install and initialize shadcn (`npx shadcn@latest init`). Choose the **CSS variables** theme option so tokens can be overridden later if needed. Keep `globals.css` with shadcn's **default** CSS variable slots (standard neutral palette for primary, secondary, muted, destructive, etc.); no custom product color mapping required. Use **Tailwind's default font stack** (or leave body font unspecified); no Google Fonts or custom font families (Fraunces, Outfit, JetBrains Mono) required for MVP. Add only the shadcn components needed for Week 1–2: Button, Input, Card, Badge, Dialog, Popover, DropdownMenu, Separator, Skeleton, Tooltip. Keep the component list lean; add others on demand.
+
 **Deliverable:** `npm run dev` runs; lint/format pass; shadcn available; project layout matches PRD scaffold (e.g. `src/app`, `src/components`, `src/lib`, `src/types`).
 
 ---
